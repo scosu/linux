@@ -320,6 +320,16 @@
 #define CSR_STVAL2		0x14b
 #define CSR_SATP		0x180
 
+/*
+ * Page-fault encoding in stval2/mtval2 for load/store/AMO page faults.
+ * Per Zcheripte 0.9.3 ("mtval2 for page faults") this is a small enum,
+ * not a bitfield: a value of 2 indicates that BOTH a regular RISC-V
+ * page fault AND a CHERI PTE fault occurred on the same access.
+ */
+#define TVAL2_PF_RISCV		0	/* RISC-V page fault only */
+#define TVAL2_PF_CHERI		1	/* CHERI PTE fault only */
+#define TVAL2_PF_RISCV_CHERI	2	/* both */
+
 #define CSR_STIMECMP		0x14D
 #define CSR_STIMECMPH		0x15D
 
